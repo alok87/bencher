@@ -5,6 +5,9 @@ test:
 # sort -o results.txt results.txt
 	cat results.txt
 
+stats:
+	./stats.sh
+
 all: old/structdef-go-v1.pb.go structdef-gogo-v1.pb.go structdef-go-v1.pb.go structdef-go-v2.pb.go
 
 generate:
