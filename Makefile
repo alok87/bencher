@@ -6,7 +6,7 @@ test:
 	cat results.txt
 
 stats:
-	make stats
+	./stats.sh
 
 all: old/structdef-go-v1.pb.go structdef-gogo-v1.pb.go structdef-go-v1.pb.go structdef-go-v2.pb.go
 
