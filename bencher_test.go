@@ -12,30 +12,10 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// func randString(l int) string {
-// 	buf := make([]byte, l)
-// 	for i := 0; i < (l+1)/2; i++ {
-// 		buf[i] = byte(rand.Intn(256))
-// 	}
-// 	return fmt.Sprintf("%x", buf)[:l]
-// }
-
 func randomMerchantV1(n int) []*MerchantV1 {
 	merchant := make([]*MerchantV1, 0, n)
 	for i := 0; i < n; i++ {
 		merchant = append(merchant, &MerchantV1{
-			RefundDisabled:     rand.Intn(2) == 1,
-			AutoRefundDisabled: rand.Intn(2) == 1,
-			BlockSettlement:    rand.Intn(2) == 1,
-		})
-	}
-	return merchant
-}
-
-func randomMerchantV38Fields(n int) []*MerchantV38Fields {
-	merchant := make([]*MerchantV38Fields, 0, n)
-	for i := 0; i < n; i++ {
-		merchant = append(merchant, &MerchantV38Fields{
 			RefundDisabled:     rand.Intn(2) == 1,
 			AutoRefundDisabled: rand.Intn(2) == 1,
 			BlockSettlement:    rand.Intn(2) == 1,
@@ -86,6 +66,53 @@ func Benchmark_MerchantV1_Proto_Unmarshal(b *testing.B) {
 	}
 }
 
+func randomMerchantV38Fields(n int) []*MerchantV38Fields {
+	merchant := make([]*MerchantV38Fields, 0, n)
+	for i := 0; i < n; i++ {
+		merchant = append(merchant, &MerchantV38Fields{
+			RefundDisabled:     rand.Intn(2) == 1,
+			AutoRefundDisabled: rand.Intn(2) == 1,
+			BlockSettlement:    rand.Intn(2) == 1,
+			BlockSettlement4:   rand.Intn(2) == 1,
+			BlockSettlement5:   rand.Intn(2) == 1,
+			BlockSettlement6:   rand.Intn(2) == 1,
+			BlockSettlement7:   rand.Intn(2) == 1,
+			BlockSettlement8:   rand.Intn(2) == 1,
+			BlockSettlement9:   rand.Intn(2) == 1,
+			BlockSettlement10:  rand.Intn(2) == 1,
+			BlockSettlement11:  rand.Intn(2) == 1,
+			BlockSettlement12:  rand.Intn(2) == 1,
+			BlockSettlement13:  rand.Intn(2) == 1,
+			BlockSettlement14:  rand.Intn(2) == 1,
+			BlockSettlement15:  rand.Intn(2) == 1,
+			BlockSettlement16:  rand.Intn(2) == 1,
+			BlockSettlement17:  rand.Intn(2) == 1,
+			BlockSettlement18:  rand.Intn(2) == 1,
+			BlockSettlement19:  rand.Intn(2) == 1,
+			BlockSettlement20:  rand.Intn(2) == 1,
+			BlockSettlement21:  rand.Intn(2) == 1,
+			BlockSettlement22:  rand.Intn(2) == 1,
+			BlockSettlement23:  rand.Intn(2) == 1,
+			BlockSettlement24:  rand.Intn(2) == 1,
+			BlockSettlement25:  rand.Intn(2) == 1,
+			BlockSettlement26:  rand.Intn(2) == 1,
+			BlockSettlement27:  rand.Intn(2) == 1,
+			BlockSettlement28:  rand.Intn(2) == 1,
+			BlockSettlement29:  rand.Intn(2) == 1,
+			BlockSettlement30:  rand.Intn(2) == 1,
+			BlockSettlement31:  rand.Intn(2) == 1,
+			BlockSettlement32:  rand.Intn(2) == 1,
+			BlockSettlement33:  rand.Intn(2) == 1,
+			BlockSettlement34:  rand.Intn(2) == 1,
+			BlockSettlement35:  rand.Intn(2) == 1,
+			BlockSettlement36:  rand.Intn(2) == 1,
+			BlockSettlement37:  rand.Intn(2) == 1,
+			BlockSettlement38:  rand.Intn(2) == 1,
+		})
+	}
+	return merchant
+}
+
 func Benchmark_MerchantV38Fields_Proto_Marshal(b *testing.B) {
 	merchant := randomMerchantV38Fields(b.N)
 	b.ReportAllocs()
@@ -120,7 +147,7 @@ func Benchmark_MerchantV38Fields_Proto_Unmarshal(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		n := rand.Intn(len(ser))
-		o := &MerchantV1{}
+		o := &MerchantV38Fields{}
 		err := proto.Unmarshal(ser[n], o)
 		if err != nil {
 			b.Fatalf("goprotobuf failed to unmarshal: %s (%s)", err, ser[n])
