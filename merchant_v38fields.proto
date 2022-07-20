@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package bencher;
+option go_package = "github.com/alok87/bencher;bencher";
+
+message MerchantV38Fields {
+    bool refund_disabled = 1;
+    bool auto_refund_disabled = 2;
+    bool block_settlement = 3;
+
+    bool block_settlement4 = 4;
+    bool block_settlement5 = 5;
+    bool block_settlement6 = 6;
+    bool block_settlement7= 7;
+    bool block_settlement8 = 8;
+    bool block_settlement9 = 9;
+    bool block_settlement10 = 10;
+    bool block_settlement11 = 11;
+    bool block_settlement12 = 12;
+    bool block_settlement13 = 13;
+    bool block_settlement14 = 14;
+    bool block_settlement15 = 15;
+    bool block_settlement16 = 16;
+    bool block_settlement17 = 17;
+    bool block_settlement18 = 18;
+    bool block_settlement19 = 19;
+    bool block_settlement20 = 20;
+    bool block_settlement21 = 21;
+    bool block_settlement22 = 22;
+    bool block_settlement23 = 23;
+    bool block_settlement24 = 24;
+    bool block_settlement25 = 25;
+    bool block_settlement26 = 26;
+    bool block_settlement27 = 27;
+    bool block_settlement28 = 28;
+    bool block_settlement29 = 29;
+    bool block_settlement30 = 30;
+    bool block_settlement31 = 31;
+    bool block_settlement32 = 32;
+    bool block_settlement33 = 33;
+    bool block_settlement34 = 34;
+    bool block_settlement35 = 35;
+    bool block_settlement36 = 36;
+    bool block_settlement37 = 37;
+    bool block_settlement38 = 38;
+}

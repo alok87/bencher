@@ -10,6 +10,7 @@ make test
 ```
 make stats
 ```
+
 ## Benchmark Results
 
 benchmark                                | iter      | time/iter | bytes/op  |  allocs/op |tt.sec  | tt.kb        | ns/alloc
@@ -24,3 +25,11 @@ Totals:
 benchmark                                | iter  | time/iter | bytes/op  |  allocs/op |tt.sec  | tt.kb        | ns/alloc
 -----------------------------------------|-------|-----------|-----------|------------|--------|--------------|-----------
 Benchmark_MerchantV1_Proto_-8            |    8517694 |    665 ns/op |     6 |  51 |   5.67 |    5112 |   13.05
+
+## Contributing
+
+- add .proto file with your message. Eg: `vi merchant_v1.proto`
+- `make generate`
+- add your test functions in `bencher_test.go`
+- `make test`
+- `make stats`
