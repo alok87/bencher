@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package bencher;
+option go_package = "github.com/alok87/bencher;bencher";
+
+message MerchantV1 {
+    bool refund_disabled = 1;
+    bool auto_refund_disabled = 2;
+    bool block_settlement = 3;
+}
