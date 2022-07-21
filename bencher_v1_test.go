@@ -1,6 +1,7 @@
 package bencher
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 	reflect "reflect"
@@ -13,17 +14,19 @@ import (
 )
 
 func newRedisClient() *redis.Client {
-	host := os.Getenv("REDIS_HOST")
-	if host == "" {
-		host = "localhost"
+	if os.Getenv("REDIS_HOST") == "" {
+		redis.NewClient(&redis.Options{
+			Addr:     "localhost:36379",
+			Password: "",
+			DB:       0,
+		})
 	}
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:36379",
-		Password: "",
+
+	return redis.NewClient(&redis.Options{
+		Addr:     fmt.Sprintf("%s:%s", os.Getenv("REDIS_HOST"), os.Getenv("REDIS_PORT")),
+		Password: os.Getenv("REDIS_PASSWORD"),
 		DB:       0,
 	})
-
-	return client
 }
 
 func UpdateField(s interface{}, field string, value interface{}) {
