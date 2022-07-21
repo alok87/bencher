@@ -2,6 +2,7 @@ package bencher
 
 import (
 	"math/rand"
+	"os"
 	reflect "reflect"
 	"testing"
 	"time"
@@ -12,6 +13,10 @@ import (
 )
 
 func newRedisClient() *redis.Client {
+	host := os.Getenv("REDIS_HOST")
+	if host == "" {
+		host = "localhost"
+	}
 	client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:36379",
 		Password: "",

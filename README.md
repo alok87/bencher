@@ -27,4 +27,5 @@ Benchmark_RedisGet_MerchantV38-8         	   37562	     30866 ns/op
 - add `.proto` file with your message. Eg: `vi merchant_v1.proto`
 - `make generate` to generate the `.pg.go` Eg: `merchant_v1.pb.go`
 - add your test functions in `bencher_v1_test.go`
-- `make test` to run the benchmark tests
+- `make test` to run the benchmark tests (local)
+- export REDIS_HOST=https://someurl.com make test
