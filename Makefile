@@ -13,3 +13,5 @@ all: old/structdef-go-v1.pb.go structdef-gogo-v1.pb.go structdef-go-v1.pb.go str
 generate:
 	@buf generate
 
+bench:
+	go test -count=1 -bench=.
