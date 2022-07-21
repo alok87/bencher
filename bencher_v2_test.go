@@ -60,7 +60,7 @@ func randomMerchantV38(n int) []*MerchantV38Fields {
 	return merchant
 }
 
-func Benchmark_MerchantV38_Proto_Marshal(b *testing.B) {
+func Benchmark_ProtoMarshal_MerchantV38(b *testing.B) {
 	merchant := randomMerchantV38(b.N)
 	b.ReportAllocs()
 	b.ResetTimer()
@@ -75,7 +75,7 @@ func Benchmark_MerchantV38_Proto_Marshal(b *testing.B) {
 	b.ReportMetric(float64(serialSize)/float64(b.N), "B/serial")
 }
 
-func Benchmark_MerchantV38_Proto_Unmarshal(b *testing.B) {
+func Benchmark_ProtoUnmarshal_MerchantV38(b *testing.B) {
 	b.StopTimer()
 	merchant := randomMerchantV38(b.N)
 	ser := make([][]byte, len(merchant))
@@ -102,10 +102,10 @@ func Benchmark_MerchantV38_Proto_Unmarshal(b *testing.B) {
 	}
 }
 
-func Benchmark_MerchantV38_RedisSet(b *testing.B) {
+func Benchmark_RedisSet_MerchantV38(b *testing.B) {
 	b.StopTimer()
 	client := newRedisClient()
-	key := "refund/merchant/mid_v1"
+	key := "refund/merchant/mid_v38"
 	merchant := randomMerchantV38(b.N)[0]
 	merchantBytes, err := proto.Marshal(merchant)
 	if err != nil {
@@ -117,6 +117,23 @@ func Benchmark_MerchantV38_RedisSet(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		err := client.Set(key, merchantBytes, 0).Err()
+		if err != nil {
+			klog.Error(err)
+			b.Error(err)
+		}
+		b.StartTimer()
+	}
+}
+
+func Benchmark_RedisGet_MerchantV38(b *testing.B) {
+	b.StopTimer()
+	client := newRedisClient()
+	key := "refund/merchant/mid_v38"
+
+	b.StartTimer()
+
+	for i := 0; i < b.N; i++ {
+		err := client.Get(key).Err()
 		if err != nil {
 			klog.Error(err)
 			b.Error(err)
